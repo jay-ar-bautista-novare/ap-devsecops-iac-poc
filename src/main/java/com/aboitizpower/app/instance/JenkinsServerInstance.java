@@ -1,5 +1,6 @@
 package com.aboitizpower.app.instance;
 
+import com.hashicorp.cdktf.TerraformVariable;
 import software.constructs.Construct;
 
 import java.nio.file.Path;
@@ -8,21 +9,21 @@ import java.nio.file.Paths;
 import static com.aboitizpower.app.util.Config.getProperty;
 import static com.aboitizpower.app.util.FileHelper.retrieveFileContent;
 import static com.aboitizpower.app.util.FileHelper.NEW_LINE;
+import static com.aboitizpower.app.util.FileHelper.BIN_BASH;
+import static com.aboitizpower.app.util.FileHelper.INSTALL_DOCKER_PATH;
 
-public final class JenkinsServer extends Ec2Instance {
+public final class JenkinsServerInstance extends Ec2Instance {
 
     private static final String JENKINS_SERVER_NAME = "jenkins.server.name";
     private static final String JENKINS_SERVER_INSTANCE_TYPE = "jenkins.server.instance.type";
     private static final String JENKINS_SERVER_SECURITY_GROUPS = "jenkins.server.security.groups";
     private static final String JENKINS_SERVER_SUBNET_ID = "jenkins.server.subnet.id";
-    public static final String INSTALL_DOCKER_PATH = "src/main/sh/install_docker.sh";
     public static final String INSTALL_JENKINS_PATH = "src/main/sh/install_jenkins.sh";
     public static final String INSTALL_BLUE_OCEAN_PATH = "src/main/sh/install_jenkins_blue_ocean.sh";
-    public static final String BIN_BASH = "#!/bin/bash";
 
-    public JenkinsServer(Construct scope) {
+    public JenkinsServerInstance(Construct scope, TerraformVariable environment) {
         super(scope, getProperty(JENKINS_SERVER_NAME));
-        setTags(getNameTag(scope, getProperty(JENKINS_SERVER_NAME)));
+        setTags(getNameTag(environment.getStringValue(), getProperty(JENKINS_SERVER_NAME)));
         setAmi(getProperty(SERVER_AMI));
         setInstanceType(getProperty(JENKINS_SERVER_INSTANCE_TYPE));
         setSubnetId(getProperty(JENKINS_SERVER_SUBNET_ID));

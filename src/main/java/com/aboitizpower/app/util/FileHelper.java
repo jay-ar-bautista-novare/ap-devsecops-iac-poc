@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 public final class FileHelper {
 
     public static final String NEW_LINE = "\n";
+    public static final String BIN_BASH = "#!/bin/bash";
+    public static final String INSTALL_DOCKER_PATH = "src/main/sh/install_docker.sh";
 
     private FileHelper(){
     }
