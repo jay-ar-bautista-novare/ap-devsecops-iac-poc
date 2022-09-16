@@ -11,23 +11,23 @@ import static com.aboitizpower.app.util.FileHelper.NEW_LINE;
 
 public final class JenkinsServer extends Ec2Instance {
 
-    private static final String SERVER_NAME = "jenkins.server.name";
-    private static final String INSTANCE_TYPE = "jenkins.server.instance.type";
-    private static final String SECURITY_GROUPS = "jenkins.server.security.groups";
-    private static final String SUBNET_ID = "jenkins.server.subnet.id";
+    private static final String JENKINS_SERVER_NAME = "jenkins.server.name";
+    private static final String JENKINS_SERVER_INSTANCE_TYPE = "jenkins.server.instance.type";
+    private static final String JENKINS_SERVER_SECURITY_GROUPS = "jenkins.server.security.groups";
+    private static final String JENKINS_SERVER_SUBNET_ID = "jenkins.server.subnet.id";
     public static final String INSTALL_DOCKER_PATH = "src/main/sh/install_docker.sh";
     public static final String INSTALL_JENKINS_PATH = "src/main/sh/install_jenkins.sh";
     public static final String INSTALL_BLUE_OCEAN_PATH = "src/main/sh/install_jenkins_blue_ocean.sh";
     public static final String BIN_BASH = "#!/bin/bash";
 
     public JenkinsServer(Construct scope) {
-        super(scope, getProperty(SERVER_NAME));
-        setTags(getNameTag(scope, getProperty(SERVER_NAME)));
+        super(scope, getProperty(JENKINS_SERVER_NAME));
+        setTags(getNameTag(scope, getProperty(JENKINS_SERVER_NAME)));
         setAmi(getProperty(SERVER_AMI));
-        setInstanceType(getProperty(INSTANCE_TYPE));
-        setSubnetId(getProperty(SUBNET_ID));
+        setInstanceType(getProperty(JENKINS_SERVER_INSTANCE_TYPE));
+        setSubnetId(getProperty(JENKINS_SERVER_SUBNET_ID));
         setUserData(getInstallationScript());
-        addSecurityGroups(SECURITY_GROUPS);
+        addSecurityGroups(JENKINS_SERVER_SECURITY_GROUPS);
     }
 
     @Override
