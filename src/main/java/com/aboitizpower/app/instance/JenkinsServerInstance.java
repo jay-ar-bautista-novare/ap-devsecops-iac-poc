@@ -38,7 +38,7 @@ public final class JenkinsServerInstance extends Ec2Instance {
         Path installJenkinsBlueOceanScript = Paths.get(INSTALL_BLUE_OCEAN_PATH);
 
         return BIN_BASH + NEW_LINE +
-                retrieveFileContent(installDockerScript) +
+                retrieveFileContent(installDockerScript) + NEW_LINE +
                 retrieveFileContent(installJenkinsScript) + NEW_LINE +
                 retrieveFileContent(installJenkinsBlueOceanScript);
     }
