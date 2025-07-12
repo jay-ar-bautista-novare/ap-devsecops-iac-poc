@@ -38,7 +38,7 @@
     <dependency>
       <groupId>com.hashicorp</groupId>
       <artifactId>cdktf-provider-aws</artifactId>
-      <version>9.0.28</version>
+      <version>9.0.52</version>
     </dependency>
   </dependencies>
   <build>
